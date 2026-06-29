@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOODKAKI.my - Malaysian Street Food</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Shared Components CSS -->
+    <link rel="stylesheet" href="shared-components.css">
+    
+    <!-- Your Custom CSS -->
+    <link rel="stylesheet" href="home.css">
+    
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<body>
+    <!-- Header will be populated by shared-components.js -->
+    <header></header>
+    
+    <!-- Survey Modal -->
+    <div class="modal fade" id="surveyModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Quick Survey</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Help us improve by telling us what Malaysian food you'd like to see more of!</p>
+                    <div class="mb-3">
+                        <label for="foodPreference" class="form-label">Your favorite Malaysian food:</label>
+                        <input type="text" class="form-control" id="foodPreference" placeholder="e.g., Nasi Lemak, Char Kway Teow">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">How often do you enjoy Malaysian food?</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="frequency" id="daily" value="daily">
+                            <label class="form-check-label" for="daily">Daily</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="frequency" id="weekly" value="weekly">
+                            <label class="form-check-label" for="weekly">Weekly</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="frequency" id="monthly" value="monthly">
+                            <label class="form-check-label" for="monthly">Monthly</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="submitSurvey">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container hero-content">
+            <h1 class="hero-title">Authentic Malaysian Street Food</h1>
+            <p class="hero-subtitle">Where every bite tells a story of heritage and flavor</p>
+            <a href="foodList.html" class="btn btn-explore">Explore Dishes</a>
+            
+            <!-- Share Buttons -->
+            <div class="share-buttons mt-3">
+                <button class="btn btn-share" data-platform="facebook">
+                    <i class="fab fa-facebook me-2"></i>Share on Facebook
+                </button>
+                <button class="btn btn-share" data-platform="email">
+                    <i class="fas fa-envelope me-2"></i>Share via Email
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Signature Dishes Carousel -->
+    <section class="signature-dishes py-5">
+        <div class="container">
+            <h2 class="section-title">Must-Try Malaysian Street Foods</h2>
+            
+            <div id="dishesCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3000">
+                <div class="carousel-inner rounded-4 overflow-hidden shadow-lg">
+                    <!-- Dish 1 -->
+                    <div class="carousel-item active">
+                        <div class="dish-image-container">
+                            <img src="imageshome/char-kway-teow.jpg" class="d-block w-100" alt="Char Kway Teow">
+                            <div class="dish-label">
+                                <h2>Char Kway Teow</h2>
+                                <p>炒粿条 - Stir-fried rice noodles with prawns and cockles</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Dish 2 -->
+                    <div class="carousel-item">
+                        <div class="dish-image-container">
+                            <img src="imageshome/nasi-lemak.jpg" class="d-block w-100" alt="Nasi Lemak">
+                            <div class="dish-label">
+                                <h2>Nasi Lemak</h2>
+                                <p>椰浆饭 - Malaysia's national dish</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Dish 3 -->
+                    <div class="carousel-item">
+                        <div class="dish-image-container">
+                            <img src="imageshome/laksa-johor.jpg" class="d-block w-100" alt="Laksa Johor">
+                            <div class="dish-label">
+                                <h2>Laksa Johor</h2>
+                                <p>柔佛叻沙 - Unique spaghetti laksa</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#dishesCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#dishesCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#dishesCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#dishesCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#dishesCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Food Facts API Section -->
+    <section class="py-5" style="background-color: var(--cream);">
+        <div class="container">
+            <h2 class="section-title">Malaysian Food Facts</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card fact-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-utensils fa-3x mb-3" style="color: var(--orange-warm);"></i>
+                            <div id="foodFact">
+                                <p>Loading interesting food fact...</p>
+                            </div>
+                            <button id="newFactBtn" class="btn btn-explore mt-3">
+                                <i class="fas fa-sync-alt me-2"></i>Show Another Fact
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Heritage Section -->
+    <section class="heritage-section py-5">
+        <div class="container-fluid px-0">
+            <div class="row g-0 align-items-center">
+                <div class="col-lg-6 heritage-content p-5">
+                    <div class="p-lg-5">
+                        <h2 class="display-4 mb-4 text-white">Our Culinary Heritage</h2>
+                        <p class="lead text-white mb-5">A vibrant tapestry of flavors woven through generations of Malay, Chinese, and Indian traditions.</p>
+                        
+                        <div class="heritage-features">
+                            <div class="heritage-item">
+                                <i class="fas fa-mortar-pestle"></i>
+                                <div>
+                                    <h4>Spice Mastery</h4>
+                                    <p class="text-white">Indian-inspired spice blends that awaken the senses</p>
+                                </div>
+                            </div>
+                            <div class="heritage-item">
+                                <i class="fas fa-wok"></i>
+                                <div>
+                                    <h4>Wok Hei Magic</h4>
+                                    <p class="text-white">Chinese stir-fry techniques creating smoky perfection</p>
+                                </div>
+                            </div>
+                            <div class="heritage-item">
+                                <i class="fas fa-leaf"></i>
+                                <div>
+                                    <h4>Aromatic Roots</h4>
+                                    <p class="text-white">Malay traditions with fresh herbs and coconut</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="about.html" class="btn btn-lg mt-4" style="background: white; color: #d35400;">
+                            Explore Heritage <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 heritage-image">
+                    <div class="image-collage">
+                        <div class="collage-item large" style="background-image: url('imageshome/heritage1.jpg');"></div>
+                        <div class="collage-item small" style="background-image: url('imageshome/heritage2.jpg');"></div>
+                        <div class="collage-item small" style="background-image: url('imageshome/heritage3.jpg');"></div>
+                        <div class="collage-item medium" style="background-image: url('imageshome/heritage4.jpg');"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="free-gallery py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Food Memories</h2>
+                <p class="lead">Share your street food adventures with us</p>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item tall" style="background-image: url('imageshome/gallery-1.jpg');">
+                    <div class="gallery-overlay">
+                        <span>Penang Street Art</span>
+                    </div>
+                </div>
+                <div class="gallery-item wide" style="background-image: url('imageshome/gallery-2.jpg');">
+                    <div class="gallery-overlay">
+                        <span>Night Market</span>
+                    </div>
+                </div>
+                <div class="gallery-item" style="background-image: url('imageshome/gallery-3.jpg');">
+                    <div class="gallery-overlay">
+                        <span>Satay Grill</span>
+                    </div>
+                </div>
+                <div class="gallery-item" style="background-image: url('imageshome/gallery-4.jpg');">
+                    <div class="gallery-overlay">
+                        <span>Teh Tarik</span>
+                    </div>
+                </div>
+                <div class="gallery-item tall" style="background-image: url('imageshome/gallery-5.jpg');">
+                    <div class="gallery-overlay">
+                        <span>Roti Canai</span>
+                    </div>
+                </div>
+                <div class="gallery-item wide" style="background-image: url('imageshome/gallery-6.jpg');">
+                    <div class="gallery-overlay">
+                        <span>Hawker Center</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <a href="photo.html" class="btn btn-lg" style="background: #e67e22; color: white;">
+                    <i class="fas fa-camera me-2"></i> Share Your Photos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+<section class="newsletter-section">
+    <div class="container">
+        <h2 class="mb-4">Join Our Food Journey</h2>
+        <p class="mb-5">Subscribe to discover hidden gems and authentic Malaysian flavors</p>
+        <div class="d-flex justify-content-center">
+            <div style="width: 100%; max-width: 500px;">
+                <input id="newsletterEmail" type="email" class="newsletter-input mb-3" placeholder="Your email address">
+                <div class="form-check mb-3 text-start">
+                    <input class="form-check-input" type="checkbox" id="newsletterPreferences">
+                    <label class="form-check-label text-white" for="newsletterPreferences">
+                        Remember my preferences
+                    </label>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label text-white">How often would you like to receive updates?</label>
+                    <select class="form-select" id="newsletterFrequency">
+                        <option value="weekly">Weekly</option>
+                        <option value="biweekly">Bi-Weekly</option>
+                        <option value="monthly">Monthly</option>
+                    </select>
+                </div>
+                <button id="newsletterBtn" class="newsletter-btn">Subscribe</button>
+                <p id="newsletterMsg" class="mt-3"></p>
+                
+                <!-- Subscription Details (hidden by default) -->
+                <div id="subscriptionDetails" class="mt-4 p-3 rounded" style="background: rgba(255,255,255,0.1); display: none;">
+                    <h5 class="text-white">Your Subscription Details</h5>
+                    <p class="text-white mb-1">Email: <span id="detailEmail"></span></p>
+                    <p class="text-white mb-1">Frequency: <span id="detailFrequency"></span></p>
+                    <p class="text-white">Subscribed on: <span id="detailDate"></span></p>
+                    <button id="unsubscribeBtn" class="btn btn-sm btn-outline-light mt-2">Unsubscribe</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Footer will be populated by shared-components.js -->
+    <footer></footer>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Shared Components JavaScript -->
+    <script src="shared-components.js"></script>
+
+    <script src="home.js"></script>
+    
+</body>
+</html>

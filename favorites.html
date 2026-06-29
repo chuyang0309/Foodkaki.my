@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Favorite Dishes - FoodKaki</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="shared-components.css">
+        <link rel="stylesheet" href="foodList.css">
+        <style>
+            /* Page header styling to match the image */
+            .page-header {
+                background-color: #f5f4f0;
+                text-align: center;
+                padding: 60px 20px 80px;
+                border-bottom: 1px solid #e0ddd5;
+            }
+
+            .header-content h1 {
+                font-size: 3.5rem;
+                color: #8b7355;
+                font-weight: 400;
+                margin-bottom: 15px;
+                letter-spacing: 1px;
+            }
+
+            .header-underline {
+                width: 80px;
+                height: 3px;
+                background-color: #ff6b35;
+                margin: 0 auto 25px;
+            }
+
+            .header-content p {
+                font-size: 1.1rem;
+                color: #a69782;
+                max-width: 600px;
+                margin: 0 auto;
+                line-height: 1.6;
+            }
+
+            /* Food card container styling */
+            #foodCardList {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 25px;
+                padding: 40px 20px;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            /* Food card styling */
+            .foodCard {
+                background: white;
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                transition: all 0.3s ease;
+                position: relative;
+            }
+
+            .foodCard:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            }
+
+            .foodCard img {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+                border-bottom: 2px solid #ff6b35;
+            }
+
+            .foodCard h2 {
+                padding: 20px 20px 10px;
+                margin: 0;
+                font-size: 1.4rem;
+                color: #333;
+            }
+
+            .foodCard h2 a {
+                text-decoration: none;
+                color: #333;
+                font-weight: 600;
+            }
+
+            .foodCard h2 a:hover {
+                color: #ff6b35;
+            }
+
+            .food-location {
+                padding: 0 20px 20px;
+                color: #666;
+                font-size: 0.95rem;
+                margin: 0;
+                display: flex;
+                align-items: center;
+            }
+
+            .food-location::before {
+                content: "📍";
+                margin-right: 8px;
+            }
+
+            .empty-favorites {
+                text-align: center;
+                padding: 80px 20px;
+                color: #666;
+            }
+
+            .empty-favorites h2 {
+                color: #999;
+                margin-bottom: 15px;
+                font-size: 1.8rem;
+            }
+
+            .empty-favorites p {
+                color: #666;
+                font-size: 1.1rem;
+                margin-bottom: 25px;
+            }
+
+            .empty-favorites a {
+                background: #ff6b35;
+                color: white;
+                padding: 12px 30px;
+                text-decoration: none;
+                border-radius: 25px;
+                font-weight: 600;
+                transition: all 0.3s ease;
+            }
+
+            .empty-favorites a:hover {
+                background: #e55a2b;
+                transform: translateY(-2px);
+            }
+
+            .favorites-count {
+                text-align: center;
+                margin: 30px 0;
+                color: #ff6b35;
+                font-weight: 600;
+                font-size: 1.2rem;
+            }
+
+            .remove-favorite {
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                background: rgba(255, 255, 255, 0.95);
+                color: #ff4757;
+                border: none;
+                width: 35px;
+                height: 35px;
+                border-radius: 50%;
+                cursor: pointer;
+                font-size: 20px;
+                font-weight: bold;
+                z-index: 3;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+                opacity: 0;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            }
+
+            .foodCard:hover .remove-favorite {
+                opacity: 1;
+            }
+
+            .remove-favorite:hover {
+                background: #ff4757;
+                color: white;
+                transform: scale(1.1);
+            }
+
+            /* Responsive design */
+            @media (max-width: 768px) {
+                .header-content h1 {
+                    font-size: 2.5rem;
+                }
+                
+                #foodCardList {
+                    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                    gap: 20px;
+                    padding: 30px 15px;
+                }
+            }
+
+            /* Hide original search section */
+            #s2 {
+                display: none;
+            }
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <img src="navigation logo.png" alt="navigation figure" style="height: 25px; width: auto;">
+            <img src="Food kaki.my (Light).png" alt="website logo" style="height: 60px; width: auto">
+            <img src="Sample_User_Icon.png" alt="user icon" style="height: 60px; width: auto">
+        </header>
+        
+        <!-- Page Header Section -->
+        <section class="page-header">
+            <div class="header-content">
+                <h1>My Favorite Dishes</h1>
+                <div class="header-underline"></div>
+                <p>Your curated collection of Malaysia's most beloved street food treasures</p>
+            </div>
+        </section>
+        
+        <main id="content">
+
+            <!-- Favorites Count -->
+            <div class="favorites-count" id="favoritesCount">
+                <!-- Will be populated by JavaScript -->
+            </div>
+
+            <!-- Hidden search section (keeping for CSS compatibility) -->
+            <section id="s2" style="display: none;">
+                <div id="searchBar">
+                    <input type="text" name="search" placeholder="Search..." id="searchInput">
+                    <button type="submit" id="searchButton"><img src="images/search.jpg" id="searchIcon" alt="searchIcon"></button>
+                </div>
+            </section>
+
+            <!-- Food Cards Section -->
+            <section id="s3" class="m-5 m-md-2">
+                <div id="foodCardList">
+                    <!-- Food cards will be dynamically loaded here -->
+                </div>
+                
+                <!-- Empty state for when no favorites exist -->
+                <div id="emptyFavorites" class="empty-favorites" style="display: none;">
+                    <div>🍽️</div>
+                    <h2>No Favorites Yet</h2>
+                    <p>Start exploring delicious Malaysian street food and add your favorites!</p>
+                    <a href="foodList.html" style="color: #ff6b35; text-decoration: none; font-weight: 600; margin-top: 20px; display: inline-block;">Browse Food List →</a>
+                </div>
+            </section>
+        </main>
+        <script src="shared-components.js"></script>
+        <script src="favorites.js"></script>
+    </body>
+</html>

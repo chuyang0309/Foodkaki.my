@@ -1,0 +1,463 @@
+/* CSS Variables for consistent theming */
+:root {
+    --orange-warm: #e67e22;
+    --orange-deep: #d35400;
+    --chocolate: #5d4037;
+    --chocolate-light: #8d6e63;
+    --red-warm: #e74c3c;
+    --cream: #f5e9df;
+    --paper: #f9f5f0;
+}
+
+/* Shared Header & Footer CSS */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+/* Reset for shared components only */
+.site-header, .site-footer {
+    box-sizing: border-box;
+}
+
+.site-header *, .site-footer * {
+    box-sizing: border-box;
+}
+
+/* Header Styles - Updated for fluid behavior */
+.site-header {
+    background: transparent !important;
+    padding: 20px 0;
+    transition: all 0.3s ease;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
+}
+
+.site-header.scrolled {
+    background: var(--chocolate) !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 15px 0;
+}
+
+.site-header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.site-logo {
+    display: flex;
+    align-items: center;
+}
+
+.site-logo img {
+    height: 60px;
+    transition: all 0.3s ease;
+}
+
+/* Bounce + tilt logo animation */
+@keyframes bounceTiltLogo {
+    0%   { transform: scale(1) rotate(0deg) translateY(0); }
+    25%  { transform: scale(1.1) rotate(-5deg) translateY(-10px); }
+    50%  { transform: scale(0.95) rotate(3deg) translateY(0); }
+    75%  { transform: scale(1.05) rotate(-3deg) translateY(-5px); }
+    100% { transform: scale(1) rotate(0deg) translateY(0); }
+}
+
+.site-logo img:hover {
+    animation: bounceTiltLogo 0.7s ease;
+}
+
+.site-nav {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+
+.site-nav-link {
+    color: var(--cream) !important;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    position: relative;
+    transition: all 0.3s ease;
+    padding: 0.5rem 0;
+}
+
+/* Change link color when header is transparent */
+.site-header:not(.scrolled) .site-nav-link {
+    color: var(--chocolate) !important;
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.8);
+}
+
+.site-nav-link:hover {
+    color: var(--orange-warm) !important;
+    transform: translateY(-3px);
+}
+
+.site-nav-link.active {
+    font-weight: 600;
+}
+
+.site-nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--orange-warm);
+    transform: scaleX(1);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+}
+
+.site-nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--orange-warm);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+}
+
+.site-nav-link:hover::after {
+    transform: scaleX(1);
+}
+
+.site-login {
+    font-size: 1.5rem;
+    color: var(--cream);
+    transition: all 0.3s ease;
+    margin-left: 15px;
+    position: relative;
+}
+
+/* Change login icon color when header is transparent */
+.site-header:not(.scrolled) .site-login {
+    color: var(--chocolate);
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.8);
+}
+
+.site-login:hover {
+    color: var(--orange-warm);
+    transform: translateY(-3px);
+}
+
+.theme-toggle {
+    background: white;
+    color: var(--chocolate);
+    border: none;
+    border-radius: 20px;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 15px;
+}
+
+.theme-toggle:hover {
+    background: var(--orange-warm);
+    color: white;
+}
+
+/* User dropdown styles */
+.user-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    padding: 10px 0;
+    min-width: 150px;
+    z-index: 1001;
+    display: none;
+}
+
+.site-header.scrolled .user-dropdown {
+    background: var(--chocolate);
+}
+
+.user-dropdown a {
+    display: block;
+    padding: 8px 15px;
+    color: var(--chocolate);
+    text-decoration: none;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+}
+
+.site-header.scrolled .user-dropdown a {
+    color: var(--cream);
+}
+
+.user-dropdown a:hover {
+    background: rgba(230, 126, 34, 0.1);
+}
+
+/* Mobile Menu */
+.site-mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--chocolate);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+/* Change mobile toggle color when header is scrolled */
+.site-header.scrolled .site-mobile-toggle {
+    color: var(--cream);
+}
+
+/* Footer Styles */
+.site-footer {
+    background: var(--chocolate);
+    color: var(--cream);
+    padding: 80px 0 30px;
+    margin-top: auto;
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
+}
+
+.site-footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.site-footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 2rem;
+}
+
+.site-footer-section {
+    min-height: 120px;
+}
+
+.site-footer-section h3 {
+    color: var(--orange-warm);
+    margin-bottom: 1.2rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.site-footer-section p,
+.site-footer-section a {
+    color: var(--cream);
+    text-decoration: none;
+    line-height: 1.8;
+    margin: 0.8rem 0;
+    font-size: 0.95rem;
+}
+
+.site-footer-section a:hover {
+    color: var(--orange-warm);
+}
+
+.footer-links a {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--cream);
+    opacity: 0.8;
+    transition: all 0.3s;
+}
+
+.footer-links a:hover {
+    opacity: 1;
+    padding-left: 5px;
+    color: var(--orange-warm);
+}
+
+.social-icon {
+    color: var(--cream);
+    font-size: 1.3rem;
+    margin-right: 15px;
+    transition: all 0.3s;
+}
+
+.social-icon:hover {
+    color: var(--orange-warm);
+    transform: translateY(-3px);
+}
+
+.site-footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 1.5rem;
+    text-align: center;
+    color: #bdc3c7;
+    font-size: 0.9rem;
+}
+
+/* Theme styles */
+body[data-theme="dark"] {
+    --orange-warm: #ff9e4a;
+    --orange-deep: #ff8c33;
+    --chocolate: #3a2924;
+    --chocolate-light: #5d4a43;
+    --red-warm: #ff6b6b;
+    --cream: #e0e0e0;
+    --paper: #1e1e1e;
+    color: #e0e0e0;
+    background-color: #1e1e1e;
+}
+
+/* Ensure all text elements have proper contrast in dark mode */
+body[data-theme="dark"] h1,
+body[data-theme="dark"] h2,
+body[data-theme="dark"] h3,
+body[data-theme="dark"] h4,
+body[data-theme="dark"] h5,
+body[data-theme="dark"] h6,
+body[data-theme="dark"] p,
+body[data-theme="dark"] span,
+body[data-theme="dark"] a:not(.site-nav-link) {
+    color: #e0e0e0;
+}
+
+/* Specific adjustments for header in dark mode */
+body[data-theme="dark"] .site-header:not(.scrolled) .site-nav-link,
+body[data-theme="dark"] .site-header:not(.scrolled) .site-login {
+    color: var(--chocolate) !important;
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+/* Card and container backgrounds in dark mode */
+body[data-theme="dark"] .foodCard,
+body[data-theme="dark"] .fact-card,
+body[data-theme="dark"] .register-container,
+body[data-theme="dark"] .login-container {
+    background: #2a2a2a;
+    color: #e0e0e0;
+}
+
+/* Form elements in dark mode */
+body[data-theme="dark"] .form-input {
+    background: #3a3a3a;
+    color: #e0e0e0;
+    border-color: #5d4a43;
+}
+
+/* Update button colors for dark mode */
+body[data-theme="dark"] .btn-explore,
+body[data-theme="dark"] .register-btn,
+body[data-theme="dark"] .login-btn {
+    background: linear-gradient(45deg, var(--orange-warm), var(--red-warm));
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .site-footer-content {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .site-header-container {
+        padding: 0 1rem;
+    }
+    
+    .site-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--chocolate);
+        flex-direction: column;
+        padding: 1rem;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .site-nav.active {
+        display: flex;
+    }
+    
+    .site-mobile-toggle {
+        display: block;
+    }
+    
+    .site-nav-link {
+        padding: 1rem;
+        text-align: center;
+        margin: 5px 0;
+        color: var(--cream) !important;
+        text-shadow: none !important;
+    }
+
+    .site-footer {
+        padding: 2rem 0 1rem;
+    }
+
+    .site-footer-container {
+        padding: 0 1rem;
+    }
+
+    .site-footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+    }
+
+    .site-footer-section {
+        min-height: auto;
+    }
+
+    .site-footer-section h3 {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .footer-links a:hover {
+        padding-left: 0;
+    }
+    
+    /* Mobile user dropdown */
+    .user-dropdown {
+        right: -50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .site-footer-content {
+        gap: 1.5rem;
+    }
+    
+    .site-logo img {
+        height: 45px;
+    }
+}
+
+/* Cookie consent modal styles */
+#cookieConsentModal .modal-content {
+    background-color: var(--paper);
+    color: var(--chocolate);
+}
+
+body[data-theme="dark"] #cookieConsentModal .modal-content {
+    background-color: var(--chocolate);
+    color: var(--cream);
+}

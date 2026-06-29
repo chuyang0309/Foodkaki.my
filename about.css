@@ -1,0 +1,578 @@
+:root {
+    --orange-warm: #e67e22;
+    --orange-deep: #d35400;
+    --chocolate: #5d4037;
+    --chocolate-light: #8d6e63;
+    --red-warm: #e74c3c;
+    --cream: #f5e9df;
+    --paper: #f9f5f0;
+    --text-light: #ffffff;
+    --text-dark: #5d4037;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-dark);
+    background-color: var(--paper);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, .section-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: var(--chocolate);
+}
+
+/* Hero Section with Parallax and Floating Animation */
+.about-hero {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    color: var(--text-light);
+    overflow: hidden;
+}
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('imagesabout/heroheritage.jpg') no-repeat center center/cover;
+    z-index: -1;
+    transition: transform 0.5s ease-out;
+}
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(93, 64, 55, 0.7), rgba(93, 64, 55, 0.7));
+    z-index: -1;
+}
+.hero-content {
+    position: relative;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    width: 100%;
+}
+.hero-content h1 {
+    font-size: 4rem;
+    color: var(--text-light);
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    animation: float 6s ease-in-out infinite;
+}
+.hero-content .lead {
+    font-size: 1.8rem;
+    font-weight: 500;
+    opacity: 0.95;
+    animation: float 6s ease-in-out infinite 0.5s;
+}
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Floating Food Icons */
+.floating-icons {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+.floating-icon {
+    position: absolute;
+    font-size: 2rem;
+    color: rgba(255,255,255,0.5);
+    animation: floatAround 15s linear infinite;
+}
+@keyframes floatAround {
+    0% { transform: translateY(0) translateX(0) rotate(0deg); }
+    25% { transform: translateY(-50px) translateX(50px) rotate(90deg); }
+    50% { transform: translateY(0) translateX(100px) rotate(180deg); }
+    75% { transform: translateY(50px) translateX(50px) rotate(270deg); }
+    100% { transform: translateY(0) translateX(0) rotate(360deg); }
+}
+
+/* Content Sections with Scroll Animations */
+.content-section {
+    padding: 100px 0;
+    position: relative;
+}
+.section-title {
+    position: relative;
+    margin-bottom: 60px;
+    padding-bottom: 15px;
+    text-align: center;
+    letter-spacing: 1px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+.section-title.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.section-title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: var(--orange-warm);
+    transition: width 0.5s ease;
+}
+.section-title:hover:after {
+    width: 120px;
+}
+
+/* Culture Cards with 3D Flip Effect */
+.culture-card {
+    border-top: 4px solid var(--orange-warm);
+    transition: all 0.6s ease;
+    background: rgb(212, 129, 129);
+    padding: 40px 30px;
+    height: 100%;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    opacity: 0;
+    transform: translateY(50px) rotateX(20deg);
+    transition: all 0.8s ease;
+}
+.culture-card.visible {
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
+}
+.culture-card:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--orange-warm), var(--red-warm));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+.culture-card:hover {
+    transform: translateY(-10px) rotateY(5deg);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+.culture-card:hover:before {
+    transform: scaleX(1);
+}
+.icon-box {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, var(--orange-warm), var(--red-warm));
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    transition: all 0.5s ease;
+    transform-style: preserve-3d;
+}
+.culture-card:hover .icon-box {
+    transform: rotateY(180deg) scale(1.1);
+    background: linear-gradient(135deg, var(--red-warm), var(--orange-warm));
+}
+
+/* Mission Section with Rotating Image */
+.mission-image {
+    border: 8px solid white;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    transform: rotate(-5deg);
+    transition: all 0.5s ease;
+    opacity: 0;
+    transform: translateX(-50px) rotate(-10deg);
+}
+.mission-image.visible {
+    opacity: 1;
+    transform: translateX(0) rotate(-5deg);
+}
+.mission-image:hover {
+    transform: rotate(0deg) scale(1.05);
+}
+
+/* Blog Preview with Tilt Effect */
+.blog-preview {
+    background-color: white;
+    border-radius: 8px;
+    padding: 50px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+    border-left: 4px solid var(--orange-warm);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease 0.2s;
+}
+.blog-preview.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.blog-preview:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--orange-warm), var(--red-warm));
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.4s ease;
+}
+.blog-preview:hover {
+    transform: translateY(-5px) rotateZ(1deg);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+.blog-preview:hover:before {
+    transform: scaleY(1);
+}
+.btn-read-more {
+    background: linear-gradient(to right, var(--orange-warm), var(--red-warm));
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+}
+.btn-explore:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(230, 126, 34, 0.3);
+}
+
+/* Team Section with Bouncing Photos */
+.team-member {
+    text-align: center;
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+}
+.team-member.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.team-img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.team-member:hover {
+    transform: translateY(-5px);
+}
+.team-member:hover .team-img {
+    border-color: var(--orange-warm);
+    transform: scale(1.1) rotate(5deg);
+    animation: bounce 0.5s ease;
+}
+@keyframes bounce {
+    0%, 100% { transform: scale(1.1) rotate(5deg); }
+    50% { transform: scale(1.15) rotate(10deg); }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .about-hero {
+        height: 80vh;
+    }
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    .hero-content .lead {
+        font-size: 1.2rem;
+    }
+    .content-section {
+        padding: 60px 0;
+    }
+    .blog-preview {
+        padding: 30px;
+    }
+}
+
+/* Additional improvements for text visibility */
+.dark-text-area {
+    color: var(--text-light) !important;
+}
+
+.dark-text-area h1,
+.dark-text-area h2,
+.dark-text-area h3,
+.dark-text-area h4,
+.dark-text-area .section-title {
+    color: var(--text-light) !important;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+}
+
+.text-shadow {
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+}
+
+/* Fix for mission section text contrast */
+.mission-section {
+    background-color: var(--chocolate) !important;
+    color: var(--text-light) !important;
+}
+
+.mission-section h2,
+.mission-section h3,
+.mission-section h4,
+.mission-section .section-title {
+    color: var(--text-light) !important;
+}
+
+.mission-section p,
+.mission-section li {
+    color: var(--cream) !important;
+}
+
+.mission-section .list-unstyled span {
+    color: var(--text-light) !important;
+}
+
+/* Team Section with distinctive background */
+.team-section {
+    background: linear-gradient(135deg, var(--chocolate-light) 0%, var(--chocolate) 100%) !important;
+    color: var(--text-light) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Add a subtle pattern to distinguish from footer */
+.team-section:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%235d4037' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+    opacity: 0.3;
+    z-index: 0;
+}
+
+.team-section > .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Mission section style update */
+.mission-section {
+    background-color: var(--chocolate) !important;
+    color: var(--text-light) !important;
+    position: relative;
+}
+
+/* Fix for section titles in dark areas */
+.team-section .section-title,
+.mission-section .section-title {
+    color: var(--text-light) !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Ensure all text in dark sections has proper contrast */
+.team-section *:not(.btn):not(.icon-box):not(i),
+.mission-section *:not(.btn):not(.icon-box):not(i) {
+    color: var(--text-light) !important;
+}
+
+/* Fix for text-muted in dark sections */
+.team-section .text-muted {
+    color: var(--cream) !important;
+    opacity: 0.9;
+}
+
+/* Mission Section with new aesthetic */
+.mission-section {
+    background: linear-gradient(135deg, #d28b59e0 0%, #e78433d4 80%) !important;
+    color: var(--text-light) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.mission-section:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.15;
+    z-index: 0;
+}
+
+.mission-section > .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Team Section with new aesthetic */
+.team-section {
+    background: linear-gradient(135deg, #de9961 0%, #7e5c4a 100%) !important;
+    color: var(--text-light) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.team-section:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.1;
+    z-index: 0;
+}
+
+.team-section > .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Fix for section titles */
+.team-section .section-title,
+.mission-section .section-title {
+    color: var(--text-light) !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Mission section content styling */
+.mission-section p,
+.mission-section li {
+    color: rgba(255, 245, 240, 0.95) !important;
+    font-size: 1.1rem;
+}
+
+.mission-section .list-unstyled li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mission-section .list-unstyled li:last-child {
+    border-bottom: none;
+}
+
+.mission-section .list-unstyled i {
+    color: #FFA726 !important;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 5px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Team member cards */
+.team-member {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 25px 20px;
+    border-radius: 12px;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    height: 100%;
+}
+
+.team-member:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+    border-color: rgba(230, 126, 34, 0.4);
+}
+
+.team-member h4 {
+    color: #FFD54F !important;
+    margin-top: 15px;
+    font-weight: 600;
+}
+
+.team-member .text-muted {
+    color: #FFCCBC !important;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.team-member p {
+    color: rgba(255, 255, 255, 0.9) !important;
+    line-height: 1.6;
+}
+
+/* Team images */
+.team-img {
+    border: 4px solid rgba(255, 255, 255, 0.25) !important;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.team-member:hover .team-img {
+    border-color: #FFA726 !important;
+    transform: scale(1.1) rotate(3deg);
+    box-shadow: 0 8px 20px rgba(234, 164, 104, 0.3);
+}
+
+/* Culture cards background fix */
+.culture-card {
+    background: white !important; /* Changed from reddish color to white */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .team-member {
+        margin-bottom: 25px;
+    }
+    
+    .mission-section .list-unstyled i {
+        width: 25px;
+        height: 25px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Fix for culture cards text */
+.culture-card p {
+    color: var(--chocolate) !important;
+}
+
+/* Fix for blog preview text */
+.blog-preview p {
+    color: var(--chocolate) !important;
+}
+

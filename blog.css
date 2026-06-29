@@ -1,0 +1,158 @@
+    body { 
+        font-family: "Times New Roman", Times, serif;
+        margin:0; 
+        background:#fefae9; 
+        color:#222; 
+    }
+
+    .map-wrap { 
+        position: relative;
+        max-width: 100%; 
+        margin: 48px auto; 
+        padding: 0 16px;
+        top: 100px; 
+         background: transparent !important;
+        border: none !important;
+    }
+
+    h1 { 
+        text-align: center; 
+          margin-top: -80px; 
+    }
+
+    .malaysia-map { 
+        width: 100%; 
+        height: auto; 
+        display:block; 
+        background: transparent !important; /*clear the white color background */
+        border: none !important; 
+       position: relative;
+        top: -30px;   
+    }
+
+    /* style for every state */
+    .malaysia-map path {
+      fill:#e0e7ff; 
+      stroke:#374151; 
+      stroke-width:1.5;
+      transition: fill .2s ease, transform .2s ease, filter .2s ease;
+      cursor: pointer;
+    }
+
+    .malaysia-map path:hover {
+      fill:#ffd166; 
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,.12)); 
+    
+    }
+
+    .map-container {
+  display: flex;
+   flex-wrap: wrap; 
+  gap: 20px;
+  max-width: 1400px;
+  margin: 50px auto;
+  align-items: flex-start; 
+}
+
+.map-wrap {
+  flex: 2;  
+  align-self: flex-start;  
+}
+
+.map-info {
+  width: 500px;   
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.1);
+  font-size: 16px;
+  line-height: 1.6;
+  align-self: center; 
+}
+
+.map-wrap svg {
+  width: 100%;
+  height: auto;
+  max-width: 2000px; /* zoom the map */
+  display: block;
+ margin-top: -50px; 
+}
+
+
+path {
+  transition: filter 0.3s ease;
+  cursor: pointer;
+}
+
+
+path:hover {
+  filter: brightness(70%) saturate(120%);
+}
+
+#perlis   { fill: #FF9999; }   
+#Kedah    { fill: #99CCFF; }  
+#Penang   { fill: #99FF99; }   
+#Perak    { fill: #FFCC99; }   
+#Selangor { fill: #CCCCFF; }   
+#NegeriSembilan  { fill: #FFFF99; }   
+#Melaka   { fill: #FFB3E6; }   
+#Johor    { fill: #B3E6FF; }   
+#Kelantan { fill: #FFCCFF; }   
+#Terengganu { fill: #99E699; } 
+#Pahang   { fill: #FFD699; }   
+#kl       { fill: #FF9966; }   
+#putrajaya { fill: #66CCCC; }  
+    
+/* 'Explore Vendors'button */
+.info-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #007BFF;  
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.info-btn:hover {
+  background: #0056b3;  
+}
+
+.info-content {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+
+.info-content.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .map-container {
+    flex-direction: column; /* 变成上下布局 */
+    align-items: center;
+  }
+
+  #map-info {
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .info-btn {
+    display: block;
+    margin: 15px auto 0;
+  }
+}
+
+footer {
+  text-align: center;
+  padding: 15px;
+  margin-top: 20px;
+  background: #eee;
+  font-size: 14px;
+  color: #333;
+}

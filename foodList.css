@@ -1,0 +1,139 @@
+
+
+body{
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+    align-items: center;
+}
+
+
+
+main{
+    display: flex;
+    flex-direction: column;
+    margin-top: 73px;
+    box-sizing: border-box;
+}
+
+
+#s1, #s2, #s3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+}
+
+#s1 >h1{
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+#searchBar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 50vw;
+    height:6vh;
+    background-color: white;
+    border-radius: 100px;
+
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+
+
+#searchInput{
+    flex:9;
+    height:100%;
+
+    border-width: 0px;
+    padding: 0rem 1.5625rem;
+
+    background-color: white;
+    border-radius: 100px;
+}
+
+#searchButton{
+    display:flex;
+    flex:1;
+    justify-content: center;
+    align-items: center;
+    border-width: 0px;
+    padding: 0px;
+    background-color: transparent;
+}
+
+#searchIcon{
+    border:0px;
+    padding:0px;   
+    width: 3.125rem;
+}
+
+
+#s3{
+    display: flex;
+}
+
+#foodCardList{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.foodCard{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    border-radius: 10px;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+    width: 300px;
+    height: 250px;
+    margin: 40px;
+    padding: 10px;
+}
+
+@media (max-width: 768px){
+    .foodCard{
+
+    width: 70vw;
+    height: 250px;
+
+}
+}
+
+.foodCard>h2{
+    margin-bottom: 0px;
+    font-weight: 300;
+    font-size:1.25rem;
+}
+
+.foodCard>h2>a{
+    text-decoration: none; 
+    color: black;
+}
+
+#s3 img{
+    height:78%;
+    width:100%;
+    object-fit: cover; 
+    border-radius: 7px;
+}
+
+@media (max-width: 768px){
+    #searchBar{
+        width: 75vw;
+        height:6vh;
+    }
+
+    #searchIcon{
+    border:0px;
+    width: 2.125rem;
+    padding: 1rem;
+}
+}

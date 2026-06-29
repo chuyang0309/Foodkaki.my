@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Malaysian Street Food Delights</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Shared Components CSS (load first) -->
+    <link rel="stylesheet" href="shared-components.css">
+    
+    <!-- Your Custom CSS (load after shared components) -->
+    <link rel="stylesheet" href="about.css">
+</head>
+<body>
+    <!-- Header will be populated by shared-components.js -->
+    <header></header>
+    
+    <!-- Hero Section with Floating Elements -->
+    <section class="about-hero">
+        <div class="hero-background" id="heroBackground"></div>
+        <div class="hero-overlay"></div>
+        <div class="floating-icons">
+            <i class="fas fa-utensils floating-icon" style="top:20%; left:10%; animation-delay:0s;"></i>
+            <i class="fas fa-wok floating-icon" style="top:30%; left:80%; animation-delay:1s;"></i>
+            <i class="fas fa-mortar-pestle floating-icon" style="top:70%; left:15%; animation-delay:2s;"></i>
+            <i class="fas fa-pepper-hot floating-icon" style="top:60%; left:70%; animation-delay:3s;"></i>
+            <i class="fas fa-fish floating-icon" style="top:40%; left:40%; animation-delay:4s;"></i>
+            <i class="fas fa-ice-cream floating-icon" style="top:80%; left:60%; animation-delay:5s;"></i>
+        </div>
+        <div class="container hero-content">
+            <h1>The Soul of Malaysian Street Food</h1>
+            <p class="lead">Where Woks Tell Stories</p>
+        </div>
+    </section>
+
+    <!-- Culture Story Section -->
+    <section class="content-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="section-title">Our Food Heritage</h2>
+                    <p class="lead mb-5" style="color: var(--chocolate-light);">From Penang's Assam Laksa to Kuala Lumpur's Satay, Malaysian street food is a delicious testament to 500 years of cultural fusion. What began as simple hawker carts during colonial times has now been recognized by UNESCO as intangible cultural heritage.</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="culture-card">
+                        <div class="icon-box">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h3>Malay Flavors</h3>
+                        <p>The aromatic spices and rich coconut milk that form the base of many traditional dishes like Nasi Lemak and Rendang.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="culture-card">
+                        <div class="icon-box">
+                            <i class="fas fa-wok"></i>
+                        </div>
+                        <h3>Chinese Techniques</h3>
+                        <p>The wok hei (breath of the wok) that gives Char Kway Teow its distinctive smoky flavor and texture.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="culture-card">
+                        <div class="icon-box">
+                            <i class="fas fa-mortar-pestle"></i>
+                        </div>
+                        <h3>Indian Spices</h3>
+                        <p>The complex spice blends that transform simple ingredients into flavorful dishes like Roti Canai and Murtabak.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section with Rotating Image -->
+    <section class="content-section mission-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <img src="imagesabout/mission.jpg" alt="Our Mission" class="mission-image img-fluid rounded shadow">
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="section-title">Our Mission</h2>
+                    <p>We document street vendors' secret recipes, preserve endangered cooking techniques, and share the authentic taste of Malaysia with the world.</p>
+                    <p>Through this platform, we aim to:</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-3"><i class="fas fa-check-circle me-2" style="color: var(--orange-warm);"></i> Educate food lovers about Malaysia's culinary heritage</li>
+                        <li class="mb-3"><i class="fas fa-check-circle me-2" style="color: var(--orange-warm);"></i> Support local hawkers and small businesses</li>
+                        <li class="mb-3"><i class="fas fa-check-circle me-2" style="color: var(--orange-warm);"></i> Promote sustainable food tourism</li>
+                        <li class="mb-3"><i class="fas fa-check-circle me-2" style="color: var(--orange-warm);"></i> Preserve traditional cooking methods</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Preview Section -->
+    <section class="content-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="blog-preview">
+                        <h3 class="text-center">From Our Blog</h3>
+                        <h4 class="text-center mb-4">Why Malaysian Street Food is a Cultural Treasure</h4>
+                        <p class="text-center mb-4" style="font-size: 1.1rem;">
+                            With its mix of Malay, Chinese, Indian, and Peranakan influences, Malaysia's street food is more than tasty — it's history on a plate.
+                        </p>
+                        <div class="text-center">
+                            <a href="blog.html" class="btn btn-read-more">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="content-section team-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="section-title">Meet Our Food Detectives</h2>
+                    <p class="lead mb-5">Our team of local experts brings authentic knowledge and passion to documenting Malaysia's street food culture.</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="team-member">
+                        <img src="imagesabout/lucastan.jpg" class="team-img" alt="lucastan">
+                        <h4>Tan Gyap Sheng</h4>
+                        <p class="text-muted">Malay Cuisine Expert</p>
+                        <p>3rd generation nasi lemak vendor from Penang with 15 years experience preserving Northern Malay flavors.</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="team-member">
+                        <img src="imagesabout/chuyang.jpg" class="team-img" alt="chuyang">
+                        <h4>Cheng Chu Yang</h4>
+                        <p class="text-muted">Food Anthropologist</p>
+                        <p>Specializing in the Chinese-Malaysian food fusion that developed in Penang's early kopitiams.</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="team-member">
+                        <img src="imagesabout/songlin.jpg" class="team-img" alt="songlin">
+                        <h4>Lee Song Lin</h4>
+                        <p class="text-muted">Spice Master</p>
+                        <p>30 years experience studying the Indian influence on Malaysian street food, particularly in Klang Valley.</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="team-member">
+                        <img src="imagesabout/huini.jpg" class="team-img" alt="huini">
+                        <h4>Quah Hui Ni</h4>
+                        <p class="text-muted">Nyonya Cuisine Specialist</p>
+                        <p>Expert in Peranakan heritage dishes with family recipes passed down for generations in Malacca.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer will be populated by shared-components.js -->
+    <footer></footer>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Shared Components JavaScript (load before your custom scripts) -->
+    <script src="shared-components.js"></script>
+    
+    <!-- Your custom JavaScript -->
+    <script src="about.js"></script>
+    
+</body>
+</html>

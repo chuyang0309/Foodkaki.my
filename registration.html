@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - FOODKAKI.my</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #5d4e37 0%, #8b7355 50%, #d4c4b0 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated Background Elements */
+        .bg-decoration {
+            position: absolute;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .bg-decoration:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            font-size: 8rem;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .bg-decoration:nth-child(2) {
+            top: 70%;
+            right: 15%;
+            font-size: 6rem;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        .bg-decoration:nth-child(3) {
+            bottom: 20%;
+            left: 20%;
+            font-size: 7rem;
+            animation: float 7s ease-in-out infinite;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(93, 78, 55, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff7b42;
+            font-style: italic;
+            text-decoration: none;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #f5f2f0;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #ff7b42;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #ff7b42;
+        }
+
+        /* Registration Container */
+        .register-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+            width: 100%;
+            max-width: 500px;
+            margin: 2rem;
+            position: relative;
+            animation: slideInUp 0.8s ease;
+        }
+
+        .register-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .register-title {
+            font-size: 2.5rem;
+            color: #5d4e37;
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        .register-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #ff7b42, #ff9966);
+        }
+
+        .register-subtitle {
+            color: #8b7355;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+
+        /* Form Styles */
+        .register-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #5d4e37;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px 20px 15px 50px;
+            border: 2px solid #d4c4b0;
+            border-radius: 12px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.9);
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #ff7b42;
+            box-shadow: 0 0 15px rgba(255,123,66,0.3);
+            transform: translateY(-2px);
+        }
+
+        .form-input.error {
+            border-color: #e74c3c;
+            background: rgba(231, 76, 60, 0.1);
+        }
+
+        .form-input.success {
+            border-color: #27ae60;
+            background: rgba(39, 174, 96, 0.1);
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #8b7355;
+            font-size: 1.2rem;
+            pointer-events: none;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #8b7355;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .password-toggle:hover {
+            color: #ff7b42;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+
+        .success-message {
+            color: #27ae60;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+
+        /* Password Strength Indicator */
+        .password-strength {
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .strength-bar {
+            height: 4px;
+            background: #e0e0e0;
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+
+        .strength-fill {
+            height: 100%;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .strength-text {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        /* Checkbox Styles */
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            margin: 0.5rem 0;
+        }
+
+        .custom-checkbox {
+            position: relative;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .custom-checkbox input {
+            opacity: 0;
+            position: absolute;
+            cursor: pointer;
+        }
+
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background: #f5f2f0;
+            border: 2px solid #d4c4b0;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .custom-checkbox:hover input ~ .checkmark {
+            border-color: #ff7b42;
+        }
+
+        .custom-checkbox input:checked ~ .checkmark {
+            background: #ff7b42;
+            border-color: #ff7b42;
+        }
+
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        .custom-checkbox input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        .custom-checkbox .checkmark:after {
+            left: 6px;
+            top: 2px;
+            width: 6px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        .checkbox-label {
+            color: #5d4e37;
+            font-size: 0.9rem;
+            cursor: pointer;
+            user-select: none;
+            line-height: 1.4;
+        }
+
+        /* Button Styles */
+        .register-btn {
+            background: linear-gradient(45deg, #ff7b42, #ff9966);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .register-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255,123,66,0.4);
+        }
+
+        .register-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .register-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-loading {
+            display: none;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .spinner {
+            border: 2px solid transparent;
+            border-top: 2px solid white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+
+        /* Links */
+        .register-links {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .register-link {
+            color: #ff7b42;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .register-link:hover {
+            color: #e65a2b;
+            text-shadow: 0 2px 4px rgba(255,123,66,0.3);
+        }
+
+        /* Success Animation */
+        .success-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(39, 174, 96, 0.95);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            z-index: 2000;
+            display: none;
+            animation: successPop 0.5s ease;
+        }
+
+        /* Animations */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .shake {
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes successPop {
+            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            /* Mobile-first approach */
+            body {
+                padding: 0;
+                margin: 0;
+                min-height: 100vh;
+                background: linear-gradient(135deg, #5d4e37 0%, #8b7355 50%, #d4c4b0 100%);
+                overflow-x: hidden;
+                display: flex;
+                flex-direction: column;
+            }
+
+            /* Hide background decorations on mobile */
+            .bg-decoration {
+                display: none;
+            }
+
+            /* Mobile navigation */
+            .navbar {
+                position: relative;
+                width: 100%;
+                background: rgba(93, 78, 55, 0.95);
+                backdrop-filter: blur(10px);
+                padding: 0.3rem 0;
+                z-index: 1000;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                gap: 0.3rem;
+                padding: 0 0.8rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+                text-align: center;
+            }
+
+            .nav-links {
+                gap: 0.3rem;
+                flex-wrap: wrap;
+                justify-content: center;
+                font-size: 0.8rem;
+            }
+
+            .nav-links a {
+                font-size: 0.75rem;
+                padding: 0.2rem 0.4rem;
+            }
+
+            /* Mobile registration container */
+            .register-container {
+                margin: 0;
+                padding: 0.8rem;
+                width: 100%;
+                max-width: 100%;
+                border-radius: 0;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                background: rgba(255, 255, 255, 0.95);
+                box-sizing: border-box;
+            }
+
+            .register-header {
+                margin-bottom: 0.8rem;
+                text-align: center;
+            }
+
+            .register-title {
+                font-size: 1.4rem;
+                margin-bottom: 0.2rem;
+            }
+
+            .register-subtitle {
+                font-size: 0.8rem;
+            }
+
+            /* Mobile form elements */
+            .form-group {
+                margin-bottom: 0.8rem;
+            }
+
+            .form-label {
+                font-size: 0.8rem;
+                margin-bottom: 0.15rem;
+            }
+
+            .form-input {
+                padding: 8px 10px 8px 35px;
+                font-size: 16px; /* Prevents zoom on iOS */
+                border-radius: 6px;
+            }
+
+            .input-icon {
+                left: 10px;
+                font-size: 0.8rem;
+            }
+
+            .password-toggle {
+                right: 10px;
+                font-size: 0.8rem;
+            }
+
+            /* Mobile buttons */
+            .register-btn {
+                padding: 10px 16px;
+                font-size: 0.9rem;
+                width: 100%;
+                margin-top: 0.5rem;
+            }
+
+            /* Mobile links */
+            .register-links {
+                margin-top: 0.8rem;
+            }
+
+            .register-link {
+                font-size: 0.75rem;
+                text-align: center;
+            }
+
+            /* Mobile success popup */
+            .success-popup {
+                width: 90%;
+                max-width: 280px;
+                padding: 1.2rem;
+                font-size: 0.85rem;
+            }
+
+            /* Mobile checkbox */
+            .checkbox-group {
+                gap: 0.4rem;
+                margin: 0.4rem 0;
+            }
+
+            .checkbox-label {
+                font-size: 0.75rem;
+                line-height: 1.1;
+            }
+
+            /* Mobile password strength */
+            .password-strength {
+                margin-top: 0.15rem;
+            }
+
+            .strength-bar {
+                height: 2px;
+            }
+
+            .strength-text {
+                font-size: 0.65rem;
+            }
+        }
+
+        /* Extra small devices (phones, 480px and down) */
+        @media (max-width: 480px) {
+            .register-container {
+                padding: 0.6rem;
+            }
+
+            .register-title {
+                font-size: 1.3rem;
+            }
+
+            .register-subtitle {
+                font-size: 0.75rem;
+            }
+
+            .form-input {
+                padding: 7px 8px 7px 30px;
+                font-size: 16px;
+            }
+
+            .input-icon {
+                left: 8px;
+                font-size: 0.75rem;
+            }
+
+            .password-toggle {
+                right: 8px;
+                font-size: 0.75rem;
+            }
+
+            .register-btn {
+                padding: 8px 14px;
+                font-size: 0.85rem;
+            }
+
+            .nav-links {
+                font-size: 0.7rem;
+            }
+
+            .nav-links a {
+                font-size: 0.65rem;
+                padding: 0.15rem 0.3rem;
+            }
+
+            .form-group {
+                margin-bottom: 0.6rem;
+            }
+
+            .form-label {
+                font-size: 0.75rem;
+                margin-bottom: 0.1rem;
+            }
+
+            .register-header {
+                margin-bottom: 0.6rem;
+            }
+
+            .register-links {
+                margin-top: 0.6rem;
+            }
+
+            .register-link {
+                font-size: 0.7rem;
+            }
+
+            .checkbox-group {
+                gap: 0.3rem;
+                margin: 0.3rem 0;
+            }
+
+            .checkbox-label {
+                font-size: 0.7rem;
+                line-height: 1.1;
+            }
+        }
+
+        /* Landscape orientation on mobile */
+        @media (max-width: 768px) and (orientation: landscape) {
+            body {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .register-container {
+                min-height: auto;
+                margin: 1rem 0.5rem;
+                padding: 1rem;
+            }
+
+            .navbar {
+                position: relative;
+            }
+
+            .nav-container {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .nav-links {
+                gap: 0.8rem;
+            }
+
+            .form-group {
+                margin-bottom: 0.6rem;
+            }
+
+            .register-header {
+                margin-bottom: 0.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Decorations -->
+    <div class="bg-decoration">🍜</div>
+    <div class="bg-decoration">🍛</div>
+    <div class="bg-decoration">🥘</div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">FOODKAKI<sup>.my</sup></a>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Dishes</a></li>
+                <li><a href="#">Vendors</a></li>
+                <li><a href="#">Stories</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="home.html">Login</a></li>
+                <li><a href="#" class="active">Register</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Registration Container -->
+    <div class="register-container">
+        <div class="register-header">
+            <h1 class="register-title">Join FOODKAKI</h1>
+            <p class="register-subtitle">Start your Malaysian street food adventure today</p>
+        </div>
+
+        <!-- Registration Form -->
+        <form class="register-form" id="registerForm" novalidate>
+            <div class="form-group">
+                <label class="form-label" for="fullName">Full Name</label>
+                <div class="input-container">
+                    <span class="input-icon">👤</span>
+                    <input 
+                        type="text" 
+                        id="fullName" 
+                        name="fullName" 
+                        class="form-input" 
+                        placeholder="Enter your full name"
+                        required
+                    >
+                </div>
+                <div class="error-message" id="fullNameError"></div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="email">Email Address</label>
+                <div class="input-container">
+                    <span class="input-icon">📧</span>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        class="form-input" 
+                        placeholder="Enter your email"
+                        required
+                    >
+                </div>
+                <div class="error-message" id="emailError"></div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="password">Password</label>
+                <div class="input-container">
+                    <span class="input-icon">🔒</span>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        class="form-input" 
+                        placeholder="Create a password"
+                        required
+                    >
+                    <span class="password-toggle" onclick="togglePassword('password')">👁️</span>
+                </div>
+                <div class="error-message" id="passwordError"></div>
+                <div class="password-strength" id="passwordStrength">
+                    <div class="strength-bar">
+                        <div class="strength-fill" id="strengthFill"></div>
+                    </div>
+                    <div class="strength-text" id="strengthText">Password strength</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="confirmPassword">Confirm Password</label>
+                <div class="input-container">
+                    <span class="input-icon">🔒</span>
+                    <input 
+                        type="password" 
+                        id="confirmPassword" 
+                        name="confirmPassword" 
+                        class="form-input" 
+                        placeholder="Confirm your password"
+                        required
+                    >
+                    <span class="password-toggle" onclick="togglePassword('confirmPassword')">👁️</span>
+                </div>
+                <div class="error-message" id="confirmPasswordError"></div>
+            </div>
+
+            <div class="checkbox-group">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                    <span class="checkmark"></span>
+                </label>
+                <label class="checkbox-label" for="agreeTerms">
+                    I agree to the <a href="#" style="color: #ff7b42;">Terms of Service</a> and 
+                    <a href="#" style="color: #ff7b42;">Privacy Policy</a>
+                </label>
+            </div>
+
+
+
+            <button type="submit" class="register-btn" id="registerBtn">
+                <span class="btn-text">Create Account</span>
+                <div class="btn-loading">
+                    <div class="spinner"></div>
+                </div>
+            </button>
+        </form>
+
+        <div class="register-links">
+            <a href="index.html" class="register-link">Already have an account? <strong>Sign in here</strong></a>
+        </div>
+    </div>
+
+    <!-- Success Popup -->
+    <div class="success-popup" id="successPopup">
+        <h3>🎉 Registration Successful!</h3>
+        <p>Welcome to FOODKAKI! You can now log in with your new account.</p>
+    </div>
+
+    <script>
+        // Cookie utility functions
+        function setCookie(name, value, days) {
+            const expires = new Date();
+            expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+            document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
+        }
+
+        function getCookie(name) {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for(let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        // Store user data in cookies (simulating a simple database)
+        function storeUserData(userData) {
+            // Get current users and add new user
+            const currentUsers = getUserDatabase();
+            const updatedUsers = currentUsers.concat([userData]);
+            
+            // Try cookies first, then localStorage as fallback
+            try {
+                // Store as JSON string in cookie
+                setCookie('registeredUsers', JSON.stringify(updatedUsers), 365);
+                
+                // Also store in localStorage as backup
+                localStorage.setItem('registeredUsers', JSON.stringify(updatedUsers));
+                
+                // Debug logging
+                console.log('Storing user data:', userData);
+                console.log('Current users before:', currentUsers);
+                console.log('Updated users after:', updatedUsers);
+                console.log('Cookie value set:', getCookie('registeredUsers'));
+                console.log('localStorage value set:', localStorage.getItem('registeredUsers'));
+            } catch (e) {
+                console.error('Error storing user data:', e);
+                // Fallback to localStorage only
+                localStorage.setItem('registeredUsers', JSON.stringify(updatedUsers));
+            }
+        }
+
+        function getUserDatabase() {
+            // Try cookies first
+            const stored = getCookie('registeredUsers');
+            if (stored) {
+                try {
+                    return JSON.parse(stored);
+                } catch (e) {
+                    console.error('Error parsing cookie data:', e);
+                }
+            }
+            
+            // Fallback to localStorage
+            const localStorageData = localStorage.getItem('registeredUsers');
+            if (localStorageData) {
+                try {
+                    return JSON.parse(localStorageData);
+                } catch (e) {
+                    console.error('Error parsing localStorage data:', e);
+                }
+            }
+            
+            return [];
+        }
+
+        // Form validation functions
+        function validateEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function validatePassword(password) {
+            return password.length >= 6;
+        }
+
+        function calculatePasswordStrength(password) {
+            let strength = 0;
+            let feedback = '';
+            
+            if (password.length >= 8) strength += 25;
+            if (/[a-z]/.test(password)) strength += 25;
+            if (/[A-Z]/.test(password)) strength += 25;
+            if (/[0-9]/.test(password)) strength += 12.5;
+            if (/[^A-Za-z0-9]/.test(password)) strength += 12.5;
+            
+            if (strength < 25) {
+                feedback = 'Very weak';
+            } else if (strength < 50) {
+                feedback = 'Weak';
+            } else if (strength < 75) {
+                feedback = 'Good';
+            } else {
+                feedback = 'Strong';
+            }
+            
+            return { strength, feedback };
+        }
+
+        function updatePasswordStrength(password) {
+            const strengthIndicator = document.getElementById('passwordStrength');
+            const strengthFill = document.getElementById('strengthFill');
+            const strengthText = document.getElementById('strengthText');
+            
+            if (password.length === 0) {
+                strengthIndicator.style.display = 'none';
+                return;
+            }
+            
+            strengthIndicator.style.display = 'block';
+            const { strength, feedback } = calculatePasswordStrength(password);
+            
+            strengthFill.style.width = strength + '%';
+            strengthText.textContent = feedback;
+            
+            // Color coding
+            if (strength < 25) {
+                strengthFill.style.background = '#e74c3c';
+            } else if (strength < 50) {
+                strengthFill.style.background = '#f39c12';
+            } else if (strength < 75) {
+                strengthFill.style.background = '#f1c40f';
+            } else {
+                strengthFill.style.background = '#27ae60';
+            }
+        }
+
+        function showError(inputId, message) {
+            const input = document.getElementById(inputId);
+            const errorDiv = document.getElementById(inputId + 'Error');
+            
+            input.classList.add('error');
+            input.classList.remove('success');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            
+            // Add shake animation
+            input.parentElement.classList.add('shake');
+            setTimeout(() => {
+                input.parentElement.classList.remove('shake');
+            }, 500);
+        }
+
+        function showSuccess(inputId) {
+            const input = document.getElementById(inputId);
+            const errorDiv = document.getElementById(inputId + 'Error');
+            
+            input.classList.add('success');
+            input.classList.remove('error');
+            errorDiv.style.display = 'none';
+        }
+
+        function clearValidation(inputId) {
+            const input = document.getElementById(inputId);
+            const errorDiv = document.getElementById(inputId + 'Error');
+            
+            input.classList.remove('error', 'success');
+            errorDiv.style.display = 'none';
+        }
+
+        // Password toggle function
+        function togglePassword(inputId) {
+            const passwordInput = document.getElementById(inputId);
+            const toggleIcon = passwordInput.parentElement.querySelector('.password-toggle');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.textContent = '🙈';
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.textContent = '👁️';
+            }
+        }
+
+        // Real-time validation
+        document.getElementById('fullName').addEventListener('blur', function() {
+            const name = this.value.trim();
+            if (!name) {
+                showError('fullName', 'Full name is required');
+            } else if (name.length < 2) {
+                showError('fullName', 'Name must be at least 2 characters long');
+            } else {
+                showSuccess('fullName');
+            }
+        });
+
+        document.getElementById('email').addEventListener('blur', function() {
+            const email = this.value.trim();
+            const users = getUserDatabase();
+            const emailExists = users.some(user => user.email === email);
+            
+            if (!email) {
+                showError('email', 'Email is required');
+            } else if (!validateEmail(email)) {
+                showError('email', 'Please enter a valid email address');
+            } else if (emailExists) {
+                showError('email', 'This email is already registered');
+            } else {
+                showSuccess('email');
+            }
+        });
+
+        document.getElementById('password').addEventListener('input', function() {
+            const password = this.value;
+            updatePasswordStrength(password);
+            
+            // Re-validate confirm password if it has a value
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            if (confirmPassword && confirmPassword !== password) {
+                showError('confirmPassword', 'Passwords do not match');
+            } else if (confirmPassword && confirmPassword === password) {
+                showSuccess('confirmPassword');
+            }
+        });
+
+        document.getElementById('password').addEventListener('blur', function() {
+            const password = this.value;
+            if (!password) {
+                showError('password', 'Password is required');
+            } else if (!validatePassword(password)) {
+                showError('password', 'Password must be at least 6 characters long');
+            } else {
+                showSuccess('password');
+            }
+        });
+
+        document.getElementById('confirmPassword').addEventListener('blur', function() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = this.value;
+            
+            if (!confirmPassword) {
+                showError('confirmPassword', 'Please confirm your password');
+            } else if (password !== confirmPassword) {
+                showError('confirmPassword', 'Passwords do not match');
+            } else {
+                showSuccess('confirmPassword');
+            }
+        });
+
+        // Clear validation on input
+        ['fullName', 'email', 'password', 'confirmPassword'].forEach(id => {
+            document.getElementById(id).addEventListener('input', function() {
+                if (this.classList.contains('error') && id !== 'password') {
+                    clearValidation(id);
+                }
+            });
+        });
+
+        // Form submission
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const fullName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const agreeTerms = document.getElementById('agreeTerms').checked;
+            const newsletter = false; // Newsletter removed for mobile optimization
+            
+            let isValid = true;
+            const users = getUserDatabase();
+            const emailExists = users.some(user => user.email === email);
+            
+            // Validate all fields
+            if (!fullName || fullName.length < 2) {
+                showError('fullName', 'Please enter a valid full name');
+                isValid = false;
+            } else {
+                showSuccess('fullName');
+            }
+            
+            if (!email) {
+                showError('email', 'Email is required');
+                isValid = false;
+            } else if (!validateEmail(email)) {
+                showError('email', 'Please enter a valid email address');
+                isValid = false;
+            } else if (emailExists) {
+                showError('email', 'This email is already registered');
+                isValid = false;
+            } else {
+                showSuccess('email');
+            }
+            
+            if (!password) {
+                showError('password', 'Password is required');
+                isValid = false;
+            } else if (!validatePassword(password)) {
+                showError('password', 'Password must be at least 6 characters long');
+                isValid = false;
+            } else {
+                showSuccess('password');
+            }
+            
+            if (!confirmPassword) {
+                showError('confirmPassword', 'Please confirm your password');
+                isValid = false;
+            } else if (password !== confirmPassword) {
+                showError('confirmPassword', 'Passwords do not match');
+                isValid = false;
+            } else {
+                showSuccess('confirmPassword');
+            }
+            
+            if (!agreeTerms) {
+                alert('Please agree to the Terms of Service and Privacy Policy');
+                isValid = false;
+            }
+            
+            if (isValid && !emailExists) {
+                // Show loading state
+                const registerBtn = document.getElementById('registerBtn');
+                const btnText = document.querySelector('.btn-text');
+                const btnLoading = document.querySelector('.btn-loading');
+                
+                registerBtn.disabled = true;
+                btnText.style.opacity = '0';
+                btnLoading.style.display = 'block';
+                
+                // Simulate registration process
+                setTimeout(() => {
+                    // Store user data
+                    const userData = {
+                        fullName: fullName,
+                        email: email,
+                        password: password,
+                        newsletter: newsletter,
+                        registrationDate: new Date().toISOString()
+                    };
+                    
+                    storeUserData(userData);
+                    
+                    // Show success popup
+                    document.getElementById('successPopup').style.display = 'block';
+                    
+                    // Reset button state
+                    registerBtn.disabled = false;
+                    btnText.style.opacity = '1';
+                    btnLoading.style.display = 'none';
+                    
+                    // Reset form
+                    document.getElementById('registerForm').reset();
+                    document.getElementById('passwordStrength').style.display = 'none';
+                    
+                    // Clear all validations
+                    ['fullName', 'email', 'password', 'confirmPassword'].forEach(id => {
+                        clearValidation(id);
+                    });
+                    
+                    // Redirect to login page after 3 seconds
+                    setTimeout(() => {
+                        document.getElementById('successPopup').style.display = 'none';
+                        window.location.href = 'index.html?registered=true';
+                    }, 3000);
+                    
+                }, 2000);
+            }
+        });
+
+        // Add animation delay to form elements
+        document.addEventListener('DOMContentLoaded', function() {
+            const formElements = document.querySelectorAll('.form-group');
+            formElements.forEach((element, index) => {
+                element.style.animationDelay = `${index * 0.1}s`;
+                element.style.animation = 'slideInUp 0.6s ease forwards';
+            });
+        });
+
+        // Add some interactive feedback
+        document.querySelectorAll('.form-input').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'translateY(-2px)';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>

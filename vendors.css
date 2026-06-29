@@ -1,0 +1,168 @@
+/*"scroll" + arrow animation*/
+.scroll {
+  flex-direction: column;
+  align-items: center;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  z-index: 2;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 0.2em;
+  font-size: 11px;
+  display: flex;
+  flex-direction: column;   
+  align-items: center;      
+  gap: 5px;    
+}
+
+.scroll span {
+  display: block;
+}
+
+.scroll svg {
+  margin-top: 10px;
+  width: 18px;
+  height: 18px;
+  animation: scroll 0.95s ease-in-out alternate infinite;
+  fill: none;
+  stroke: #6a5151;
+  stroke-linecap: round;
+  stroke-miterlimit: 10;
+  stroke-width: 1;
+}
+
+/* marque for "MALAYSIA FOOD"*/
+.marquee {
+  position: relative;
+  width: 100%;
+  top: 0px;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+  display: flex;
+  align-items:center;
+  margin:50px 0;
+}
+
+.marquee__inner {
+  display: flex;
+  white-space: nowrap;
+  animation: scroll 40s linear infinite;
+  font-size: 15rem;
+  font-weight: 800;
+  color: rgb(231, 201, 186);
+  z-index: 0; 
+  position: relative; 
+}
+
+.text-marquee .marquee__inner span {
+  font-size: 18rem;
+  font-weight: 800;
+  color: rgb(231, 201, 186);
+  opacity: 0.85;   /* 只对文字生效 */
+  padding-right: 2rem;
+}
+
+/* "marquee" scroll animation*/
+.left-marquee .marquee__inner {
+  animation: scroll-left 30s linear infinite;
+}
+
+@keyframes scroll-left {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* 左移 */
+}
+
+/* 第二行往右 */
+.right-marquee .marquee__inner {
+  animation: scroll-right 30s linear infinite;
+}
+
+@keyframes scroll-right {
+  0%   { transform: translateX(-50%); } /* 从一半开始 */
+  100% { transform: translateX(0); }    /* 回到原点 */
+}
+section {
+  min-height: 100vh; /* 每个版块至少一屏高 */
+}
+
+/* marquee for picture */
+.image-marquee .marquee__inner img {
+  height: 250px;      /* 控制图片大小 */
+  margin-right: 2rem; /* 图片间距 */
+  border-radius: 10px;
+  object-fit: cover;
+  opacity: 1;         /* 确保不透明 */
+  z-index: 1;
+}
+
+/* card overlay for picture */
+.marquee__inner {
+  animation-play-state: running;
+}
+
+.marquee__inner:hover {
+  animation-play-state: paused;
+}
+
+/* 单张图片的容器 */
+.marquee__inner .image-card {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.marquee__inner .image-card img {
+  display: block;
+  width: 300px;   /* 根据需要调 */
+  height: auto;
+}
+
+/* 卡片默认隐藏 */
+.marquee__inner .image-card .overlay {
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+  padding: 10px;
+  font-size: 14px;
+  text-align: center;
+  transition: bottom 0.5s ease;
+}
+
+/* 悬停图片时卡片上滑 */
+.marquee__inner .image-card:hover .overlay {
+  bottom: 0;
+}
+
+/*animation and style for text under the image marquee*/
+.fixed-text {
+  text-align: center;       /* 居中 */
+  margin-top: 30px;         /* 距离走马灯的间距 */
+  font-size: 24px;          /* 字体大小 */
+  font-weight: bold;        /* 加粗 */
+  color: #333;              /* 文字颜色，可换 */
+}
+
+.slide-hidden {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease-out;
+}
+
+.slide-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.intro-text {
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 20px auto;
+  text-align: center;
+  line-height: 1.8;
+  color: #444;
+}

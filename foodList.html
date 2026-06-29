@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Food List Page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        
+        <!-- Shared components CSS (load BEFORE your custom CSS) -->
+        <link rel="stylesheet" href="shared-components.css">
+        
+        <!-- Your existing CSS -->
+        <link rel="stylesheet" href="foodList.css">
+    </head>
+
+    <body>
+        <!-- Header will be populated by shared-components.js -->
+        <header></header>
+        
+        <main id="content">
+
+            <section id="s1">
+                <h1>Food List</h1>
+            </section>
+
+            <section id="s2">
+                <div id="searchBar">
+                    <input type="text" name="search" placeholder="Search..." id="searchInput">
+                    <button type="submit" id="searchButton"><img src="images/search.jpg" id="searchIcon" alt="searchIcon"></button>
+                </div>
+            </section>
+
+            <section id="s3" class="m-5 m-md-2">
+                <div id="foodCardList">
+                </div>
+            </section>
+
+        </main>
+        
+        <!-- Footer will be populated by shared-components.js -->
+        <footer></footer>
+
+        <!-- Shared components JavaScript (load BEFORE your custom scripts) -->
+        <script src="shared-components.js"></script>
+        
+        <!-- Your existing scripts -->
+        <script src="foodListData.js" type="module"></script>
+    </body>
+</html>
